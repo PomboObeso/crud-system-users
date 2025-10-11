@@ -8,7 +8,7 @@ const headerProps = {
     subtitle: 'Cadastro de Usuários: Incluir, Listar, Alterar e Excluir'
 }
 
-const baseUrl = 'http://localhost:3001/user'
+const baseUrl = 'http://localhost:3001/users'
 const initialState = {
     user: {name: '', email:''},
     list: []
@@ -39,10 +39,54 @@ export default class UserCrud extends Component {
         return list
     }
 
+    updateField(event) {
+        const user = {...this.state.user}
+        user[event.target.name] = event.target.value
+        this.setState({ user })
+    }
+
+    renderForm() {
+        return (
+            <div className="form">
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <div className="form-group">
+                            <label htmlFor="name">Nome</label>
+                            <input type="text" name="name" 
+                                className="form-control" value={this.state.user.name}
+                                onChange={e => this.updateField(e)} 
+                                placeholder="Digite o nomme..."/>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" name="email"  
+                                className="form-control" placeholder="Digite seu email..." 
+                                value={this.state.user.email}
+                                onChange={e => this.updateField(e)}/>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-end">
+                        <button className="btn btn-primary" onClick={e => this.save(e)}>
+                            Salvar
+                        </button>
+                        <button className="btn btn-secondary ml-2" onClick={e => this.clear(e)}>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <Main {...headerProps}>
-                Cadastro de Usuário
+                {this.renderForm()}
             </Main>
         )
     }
