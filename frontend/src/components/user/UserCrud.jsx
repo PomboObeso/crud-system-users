@@ -125,12 +125,12 @@ export default class UserCrud extends Component {
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td>
+                    <td className="d-flex justify-content-center align-items-center">
                         <button className="btn btn-warning" onClick={ () => this.load(user) }>
-                            <i className="fa fa-pencil"></i> Alterar
+                            <i className="fa fa-pencil"></i>
                         </button>
                         <button className="btn btn-danger ml-2" onClick={ () => this.remove(user) }>
-                            <i className="fa fa-trash"></i> Remover
+                            <i className="fa fa-trash"></i>
                         </button>
                     </td>
                 </tr>
